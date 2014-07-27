@@ -1,0 +1,34 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="ContactData.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:c="clr-namespace:ContactData.Converters"
+    SupportedOrientations="Portrait" 
+    Orientation="Portrait"
+    shell:SystemTray.IsVisible="True">
+
+    <phone:PhoneApplicationPage.Resources>
+        <c:ContactPictureConverter x:Name="ContactPictureConverter"/>
+    </phone:PhoneApplicationPage.Resources>
+    
+    <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
+        <phone:LongListSelector ItemsSource="{Binding Contacts}">
+            <phone:LongListSelector.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal" Margin="0,0,0,6">
+                        <Border BorderBrush="Gray" BorderThickness="2" HorizontalAlignment="Left" Margin="0,0,10,0">
+                            <Image Source="{Binding Converter={StaticResource ContactPictureConverter}}" Width="80" Height="80" />
+                        </Border>
+                        <StackPanel> 
+                            <TextBlock Text="{Binding DisplayName}"/>
+                        </StackPanel>
+                    </StackPanel>
+                </DataTemplate>
+            </phone:LongListSelector.ItemTemplate>
+        </phone:LongListSelector>
+    </Grid>
+</phone:PhoneApplicationPage>
